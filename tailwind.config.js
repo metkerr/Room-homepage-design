@@ -8,6 +8,7 @@ module.exports = {
         "very-dark-gray": "hsl(0, 0%, 27%)",
       },
       height: {
+        18: "4.5rem",
         88: "22rem",
       },
     },

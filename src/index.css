@@ -8,3 +8,11 @@ body{
   font-family: 'League Spartan', sans-serif;
   font-size: 14px;
 }
+
+.header p span:hover{
+  color: green
+} 
+
+#desktop-menu > button:hover > .menu-underline{
+ display: block;
+}

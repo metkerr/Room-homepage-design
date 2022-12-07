@@ -5,13 +5,18 @@ import { useState } from "react";
 import heroHeader_1 from "../images/mobile-image-hero-1.jpg";
 import heroHeader_2 from "../images/mobile-image-hero-2.jpg";
 import heroHeader_3 from "../images/mobile-image-hero-3.jpg";
+import heroHeader_1_desktop from "../images/desktop-image-hero-1.jpg";
+import heroHeader_2_desktop from "../images/desktop-image-hero-2.jpg";
+import heroHeader_3_desktop from "../images/desktop-image-hero-3.jpg";
 import angleLeft from "../images/icon-angle-left.svg";
 import angleRight from "../images/icon-angle-right.svg";
 import arrowIcon from "../images/icon-arrow.svg";
+import useGetViewport from "../utils/useGetViewport";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [contentSelector, setContentSelector] = useState(0);
+  const { width } = useGetViewport();
 
   const handleContentSelector = (pointer) => {
     // add 1 if pointer true, decrease 1 if pointer false
@@ -27,6 +32,7 @@ export default function Header() {
   const heroContent = [
     {
       mobileBgImage: heroHeader_1,
+      desktopBgImage: heroHeader_1_desktop,
       content: {
         title: "Discover innovative ways to decorate",
         caption:
@@ -35,6 +41,7 @@ export default function Header() {
     },
     {
       mobileBgImage: heroHeader_2,
+      desktopBgImage: heroHeader_2_desktop,
       content: {
         title: "We are available all across the globe",
         caption:
@@ -43,6 +50,7 @@ export default function Header() {
     },
     {
       mobileBgImage: heroHeader_3,
+      desktopBgImage: heroHeader_3_desktop,
       content: {
         title: "Manufactured with the best materials",
         caption:
@@ -52,22 +60,28 @@ export default function Header() {
   ];
 
   return (
-    <header>
+    <header className="sm:flex">
       <div
         id="hero"
-        className="h-96 bg-cover bg-center bg-no-repeat relative"
+        className="h-96 bg-cover bg-center bg-no-repeat relative sm:h-auto sm:w-3/4"
         style={{
-          backgroundImage: `url(${heroContent[contentSelector].mobileBgImage})`,
+          backgroundImage: `url(${
+            width < 640
+              ? heroContent[contentSelector].mobileBgImage
+              : heroContent[contentSelector].desktopBgImage
+          })`,
         }}
       >
+        {/* mobile header <=640px */}
         <div
           id="top-header"
-          className={`flex ${menuOpen && "hidden"}`}
-          style={{ height: "4.5rem" }}
+          className={`flex h-18 sm:h-fit sm:mx-32 sm:pt-8 ${
+            menuOpen && "hidden"
+          }`}
         >
           <div
             id="hamburger-button"
-            className="basis-1/6 my-auto"
+            className="basis-1/6 my-auto sm:hidden"
             onClick={() => setMenuOpen(true)}
           >
             <img
@@ -76,18 +90,45 @@ export default function Header() {
               alt="hamburger-button"
             />
           </div>
-          <div id="room-logo" className="grow my-auto">
-            <img src={roomLogo} alt="room-logo" className="mx-auto w-16" />
+          <div id="room-logo" className="grow my-auto sm:w-28 sm:grow-0">
+            <img
+              src={roomLogo}
+              alt="room-logo"
+              className="mx-auto sm:ml-0 w-16"
+            />
           </div>
-          <div className="basis-1/6"></div>
+          <div className="hidden sm:block basis-1/5">
+            <div
+              id="desktop-menu"
+              className="grow flex my-auto justify-end text-center pt-0.5 text-base text-white"
+            >
+              <button className="py-8 px-5 flex flex-col relative">
+                <span>home</span>
+                <span className="menu-underline hidden absolute mt-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 bg-white h-0.5" />
+              </button>
+              <button className="py-8 px-5 flex flex-col relative">
+                <span>shop</span>
+                <span className="menu-underline hidden absolute mt-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 bg-white h-0.5" />
+              </button>
+              <button className="py-8 px-5 flex flex-col relative">
+                <span>about</span>
+                <span className="menu-underline hidden absolute mt-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 bg-white h-0.5" />
+              </button>
+              <button className="py-8 px-5 flex flex-col relative">
+                <span>contact</span>
+                <span className="menu-underline hidden absolute mt-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 bg-white h-0.5" />
+              </button>
+            </div>
+          </div>
+          <div className="basis-1/6 sm:grow"></div>
         </div>
 
         <div
           id="hero-slider-button"
-          className="flex absolute bottom-0 right-0 z-0"
+          className="flex absolute bottom-0 right-0 z-0 sm:-mr-24"
         >
           <div
-            className="angle-left w-12 h-12 flex bg-black active:bg-very-dark-gray"
+            className="angle-left w-12 h-12 flex bg-black active:bg-very-dark-gray hover:cursor-pointer hover:bg-very-dark-gray"
             onClick={() => handleContentSelector(false)}
           >
             <div className="m-auto">
@@ -99,7 +140,7 @@ export default function Header() {
             </div>
           </div>
           <div
-            className="angle-right w-12 h-12 flex bg-black active:bg-very-dark-gray"
+            className="angle-right w-12 h-12 flex bg-black active:bg-very-dark-gray hover:cursor-pointer hover:bg-very-dark-gray"
             onClick={() => handleContentSelector(true)}
           >
             <div className="m-auto">
@@ -114,7 +155,9 @@ export default function Header() {
 
         {/* open menu toggle */}
         <div
-          className={`nav-container h-screen text-sm ${!menuOpen && "hidden"}`}
+          className={`nav-container sm-hidden select-none h-screen text-sm ${
+            !menuOpen && "hidden"
+          }`}
         >
           <nav className="flex font-bold bg-white h-24">
             <span className="pl-5 basis-1/5 my-auto">
@@ -143,19 +186,23 @@ export default function Header() {
         </div>
       </div>
 
-      <div id="cta-container" className="my-14 mx-8">
+      <div id="cta-container" className="my-14 mx-8 sm:w-1/4 sm:grow">
         <h1 className="text-4xl mb-2 font-bold">
           {heroContent[contentSelector].content.title}
         </h1>
         <p className="text-dark-gray">
           {heroContent[contentSelector].content.caption}
         </p>
-        <button href="#" className="font-semibold mt-8 flex">
+        <button
+          href="#"
+          className="font-semibold mt-8 flex whitespace-nowrap hover:opacity-60"
+          id="shop-now-cta"
+        >
           <span style={{ letterSpacing: "0.6rem" }} className="pt-1 text-base">
             SHOP NOW
           </span>
           <span className="m-auto pl-5">
-            <img src={arrowIcon} alt="arrow-icon" className="w-10" />
+            <img src={arrowIcon} alt="arrow-icon" />
           </span>
         </button>
       </div>
