@@ -60,10 +60,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="sm:flex">
+    <header className="sm:flex sm:h-55v">
       <div
         id="hero"
-        className="h-96 bg-cover bg-center bg-no-repeat relative sm:h-auto sm:w-3/4"
+        className="h-96 bg-cover bg-center bg-no-repeat relative sm:h-auto sm:w-3/5 sm:min-w-min"
         style={{
           backgroundImage: `url(${
             width < 640
@@ -75,7 +75,7 @@ export default function Header() {
         {/* mobile header <=640px */}
         <div
           id="top-header"
-          className={`flex h-18 sm:h-fit sm:mx-32 sm:pt-8 ${
+          className={`flex h-18 sm:h-fit sm:mx-16 sm:pt-8 ${
             menuOpen && "hidden"
           }`}
         >
@@ -90,14 +90,17 @@ export default function Header() {
               alt="hamburger-button"
             />
           </div>
-          <div id="room-logo" className="grow my-auto sm:w-28 sm:grow-0">
+          <div
+            id="room-logo"
+            className="grow my-auto sm:w-28 sm:grow-0 sm:shrink-0"
+          >
             <img
               src={roomLogo}
               alt="room-logo"
               className="mx-auto sm:ml-0 w-16"
             />
           </div>
-          <div className="hidden sm:block basis-1/5">
+          <div className="hidden sm:block">
             <div
               id="desktop-menu"
               className="grow flex my-auto justify-end text-center pt-0.5 text-base text-white"
@@ -125,29 +128,29 @@ export default function Header() {
 
         <div
           id="hero-slider-button"
-          className="flex absolute bottom-0 right-0 z-0 sm:-mr-24"
+          className="flex absolute bottom-0 right-0 z-0 sm:-mr-40 select-none"
         >
           <div
-            className="angle-left w-12 h-12 flex bg-black active:bg-very-dark-gray hover:cursor-pointer hover:bg-very-dark-gray"
+            className="angle-left w-12 h-12 flex bg-black active:bg-very-dark-gray hover:cursor-pointer hover:bg-very-dark-gray sm:w-20 sm:h-20"
             onClick={() => handleContentSelector(false)}
           >
             <div className="m-auto">
               <img
                 src={angleLeft}
                 alt="hero content slide left"
-                className="w-3"
+                className="w-3 sm:w-4"
               />
             </div>
           </div>
           <div
-            className="angle-right w-12 h-12 flex bg-black active:bg-very-dark-gray hover:cursor-pointer hover:bg-very-dark-gray"
+            className="angle-right w-12 h-12 flex bg-black active:bg-very-dark-gray hover:cursor-pointer hover:bg-very-dark-gray sm:w-20 sm:h-20"
             onClick={() => handleContentSelector(true)}
           >
             <div className="m-auto">
               <img
                 src={angleRight}
                 alt="hero content slide right"
-                className="w-3"
+                className="w-3 sm:w-4"
               />
             </div>
           </div>
@@ -186,8 +189,11 @@ export default function Header() {
         </div>
       </div>
 
-      <div id="cta-container" className="my-14 mx-8 sm:w-1/4 sm:grow">
-        <h1 className="text-4xl mb-2 font-bold">
+      <div
+        id="cta-container"
+        className="my-14 mx-8 sm:w-1/4 sm:grow sm:mx-24 sm:my-18 xl:mx-32 xl:my-28 sm:min-w-64"
+      >
+        <h1 className="text-4xl mb-2 font-bold sm:mb-5">
           {heroContent[contentSelector].content.title}
         </h1>
         <p className="text-dark-gray">
@@ -195,7 +201,7 @@ export default function Header() {
         </p>
         <button
           href="#"
-          className="font-semibold mt-8 flex whitespace-nowrap hover:opacity-60"
+          className="font-semibold mt-8 flex whitespace-nowrap hover:opacity-40 sm:mt-5"
           id="shop-now-cta"
         >
           <span style={{ letterSpacing: "0.6rem" }} className="pt-1 text-base">
