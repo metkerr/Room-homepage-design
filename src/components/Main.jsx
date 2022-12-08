@@ -3,16 +3,16 @@ import bgImage_2 from "../images/image-about-light.jpg";
 export default function Main() {
   return (
     <main>
-      <section>
+      <section className="sm:flex 2xl:h-30v">
         <div
           style={{
             backgroundImage: `url(${bgImage_1})`,
           }}
-          className="h-56 bg-top bg-cover"
+          className="h-56 bg-top bg-cover sm:w-384 sm:min-w-64 sm:h-72"
         />
-        <div>
-          <div id="about-container" className="mx-8 my-12">
-            <h2 className="font-bold uppercase tracking-widest mb-2">
+        <div className="sm:min-w-128 sm:flex">
+          <div id="about-container" className="mx-8 my-12 sm:my-auto">
+            <h2 className="font-bold uppercase tracking-widest mb-2 sm:mb-3">
               About our furniture
             </h2>
             <p className="text-dark-gray">
@@ -29,7 +29,7 @@ export default function Main() {
           style={{
             backgroundImage: `url(${bgImage_2})`,
           }}
-          className="h-56 bg-top bg-cover"
+          className="h-56 bg-top bg-cover sm:w-384 sm:min-w-64 sm:h-72"
         />
       </section>
     </main>

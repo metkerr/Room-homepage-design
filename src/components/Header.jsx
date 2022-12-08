@@ -60,7 +60,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sm:flex sm:h-55v">
+    <header className="sm:flex sm:h-55v 2xl:h-70v">
       <div
         id="hero"
         className="h-96 bg-cover bg-center bg-no-repeat relative sm:h-auto sm:w-3/5 sm:min-w-min"
@@ -81,7 +81,7 @@ export default function Header() {
         >
           <div
             id="hamburger-button"
-            className="basis-1/6 my-auto sm:hidden"
+            className="basis-1/6 my-auto cursor-pointer sm:hidden"
             onClick={() => setMenuOpen(true)}
           >
             <img
@@ -168,6 +168,7 @@ export default function Header() {
                 src={closeIcon}
                 alt="close-button"
                 onClick={() => setMenuOpen(false)}
+                className="cursor-pointer"
               />
             </span>
             <div className="menu flex-grow my-auto ml-3 flex justify-around text-center pt-0.5 text-base">
@@ -191,7 +192,7 @@ export default function Header() {
 
       <div
         id="cta-container"
-        className="my-14 mx-8 sm:w-1/4 sm:grow sm:mx-24 sm:my-18 xl:mx-32 xl:my-28 sm:min-w-64"
+        className="my-14 mx-8 sm:w-1/4 sm:grow sm:mx-24 sm:my-18 xl:mx-32 xl:my-28 sm:min-w-64 2xl:my-auto"
       >
         <h1 className="text-4xl mb-2 font-bold sm:mb-5">
           {heroContent[contentSelector].content.title}

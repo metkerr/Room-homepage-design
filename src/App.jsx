@@ -3,7 +3,7 @@ import Main from "./components/Main";
 
 function App() {
   return (
-    <div>
+    <div className="2xl:text-base">
       <Header />
       <Main />
     </div>

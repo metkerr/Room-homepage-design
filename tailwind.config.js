@@ -15,9 +15,14 @@ module.exports = {
         "75v": "75vh",
         "60v": "60vh",
         "55v": "55vh",
+        "30v": "30vh",
       },
       minWidth: {
         64: "16rem",
+        128: "30rem",
+      },
+      width: {
+        384: "110rem",
       },
     },
   },
