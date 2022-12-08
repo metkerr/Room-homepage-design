@@ -1,7 +1,7 @@
 import closeIcon from "../images/icon-close.svg";
 import hamburgerButton from "../images/icon-hamburger.svg";
 import roomLogo from "../images/logo.svg";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import heroHeader_1 from "../images/mobile-image-hero-1.jpg";
 import heroHeader_2 from "../images/mobile-image-hero-2.jpg";
 import heroHeader_3 from "../images/mobile-image-hero-3.jpg";
@@ -17,6 +17,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [contentSelector, setContentSelector] = useState(0);
   const { width } = useGetViewport();
+  const getHeader = useRef();
+
+  useEffect(() => {
+    getHeader.current?.focus(); //focus on header element on load
+  }, []);
 
   const handleContentSelector = (pointer) => {
     // add 1 if pointer true, decrease 1 if pointer false
@@ -26,6 +31,14 @@ export default function Header() {
       setContentSelector(contentSelector < 2 ? contentSelector + 1 : 0);
     } else {
       setContentSelector(contentSelector > 0 ? contentSelector - 1 : 2);
+    }
+  };
+
+  const handleKeyPress = (key) => {
+    if (key === "ArrowRight") {
+      handleContentSelector(true); // pointer + 1
+    } else if (key === "ArrowLeft") {
+      handleContentSelector(false); // pointer - 1
     }
   };
 
@@ -60,7 +73,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="sm:flex sm:h-55v 2xl:h-70v">
+    <header
+      className="sm:flex sm:h-55v 2xl:h-70v"
+      onKeyDown={(e) => handleKeyPress(e.key)}
+      tabIndex="0"
+      ref={getHeader}
+    >
       <div
         id="hero"
         className="h-96 bg-cover bg-center bg-no-repeat relative sm:h-auto sm:w-3/5 sm:min-w-min"
@@ -72,7 +90,7 @@ export default function Header() {
           })`,
         }}
       >
-        {/* mobile header <=640px */}
+        {/* mobile header viewport <=640px */}
         <div
           id="top-header"
           className={`flex h-18 sm:h-fit sm:mx-16 sm:pt-8 ${
