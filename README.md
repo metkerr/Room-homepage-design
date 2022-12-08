@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github](https://github.com/metkerr/Room-homepage-design)
-- Live Site URL: [Live on Vercel](https://github.com/metkerr/Room-homepage-design)
+- Live Site URL: [Live on Vercel](https://room-homepage-design.vercel.app/)
 
 ## My process
 
